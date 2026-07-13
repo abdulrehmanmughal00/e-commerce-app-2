@@ -25,12 +25,14 @@
 =========================== */
 
 .logo {
+  height: 100%;
   text-decoration: none;
   color: #111;
   white-space: nowrap;
   display: flex;
   align-items: center;
   min-width: 0;
+  padding-bottom: 8px;
 }
 
 .logo h2 {
@@ -51,6 +53,7 @@
 =========================== */
 
 .nav {
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -78,6 +81,7 @@
 =========================== */
 
 .actions {
+  height: 100%;
   display: flex;
   align-items: center;
   gap: 16px;
