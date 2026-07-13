@@ -1,0 +1,483 @@
+.header {
+  width: 100%;
+  height: 14vh;
+  background: #fff;
+  border-bottom: 1px solid #ececec;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding-top: 17px;
+}
+
+.container {
+  max-width: 1440px;
+  height: 82px;
+  margin: auto;
+  padding: 0 35px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 40px;
+}
+
+/* ===========================
+   Logo
+=========================== */
+
+.logo {
+  text-decoration: none;
+  color: #111;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.logo h2 {
+  font-size: clamp(12px, 2vw, 32px);
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.logo span {
+  color: #d3262d;
+  font-size: clamp(26px, 3vw, 42px);
+  font-family: cursive;
+}
+
+/* ===========================
+   Desktop Nav
+=========================== */
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.link {
+  text-decoration: none;
+  color: #111;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  transition: 0.3s;
+}
+
+.link:hover {
+  color: #777;
+}
+
+/* ===========================
+   Right Side
+=========================== */
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-self: end;
+}
+
+.search {
+  width: 240px;
+  max-width: 100%;
+  height: 42px;
+
+  border: 1px solid #ddd;
+  border-radius: 40px;
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+  flex-shrink: 1;
+}
+
+.search input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: none;
+  outline: none;
+  padding: 0 16px;
+  font-size: 14px;
+  background: transparent;
+}
+
+.search button {
+  width: 46px;
+  height: 100%;
+  flex-shrink: 0;
+
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search svg {
+  font-size: 20px;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+}
+
+.icon svg {
+  font-size: 22px;
+}
+
+.icon span {
+  position: absolute;
+  top: 0;
+  right: -2px;
+
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+
+  background: #111;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 10px;
+  line-height: 1;
+}
+
+/* ===========================
+   Menu Button
+=========================== */
+
+.menuBtn {
+  display: none;
+
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.menuBtn svg {
+  font-size: 28px;
+}
+
+/* ===========================
+   Mobile Search Toggle
+   (shown only under 992px, replaces hidden .search)
+=========================== */
+
+.mobileSearchBtn {
+  display: none;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobileSearchBtn svg {
+  font-size: 20px;
+}
+
+/* ===========================
+   Overlay
+=========================== */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: 0.3s;
+
+  z-index: 1000;
+}
+
+.overlayShow {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ===========================
+   Drawer
+=========================== */
+
+.drawer {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: min(300px, 85vw);
+  max-width: 85vw;
+  height: 100vh;
+  height: 100dvh;
+
+  background: white;
+
+  transform: translateX(-100%);
+  transition: transform 0.35s ease;
+
+  z-index: 1001;
+
+  overflow-y: auto;
+}
+
+.drawerShow {
+  transform: translateX(0);
+}
+
+.drawerTop {
+  height: 70px;
+  padding: 0 20px;
+
+  border-bottom: 1px solid #eee;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.drawerTop h3 {
+  font-size: 22px;
+  margin: 0;
+}
+
+.drawerTop button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drawerTop svg {
+  font-size: 28px;
+}
+
+.mobileNav {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileNav a {
+  padding: 18px 22px;
+  border-bottom: 1px solid #f2f2f2;
+
+  text-decoration: none;
+  color: #111;
+
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* ===========================
+   1200px
+=========================== */
+
+@media (max-width: 1200px) {
+  .container {
+    gap: 20px;
+    padding: 0 24px;
+  }
+
+  .nav {
+    gap: 18px;
+  }
+
+  .search {
+    width: 180px;
+  }
+}
+
+/* ===========================
+   992px
+   (nav + search collapse into drawer)
+=========================== */
+
+@media (max-width: 992px) {
+  .container {
+    grid-template-columns: auto 1fr auto;
+    padding: 0 18px;
+    height: 72px;
+    gap: 12px;
+  }
+
+  .menuBtn {
+    display: flex;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .search {
+    display: block;
+  }
+
+  .mobileSearchBtn {
+    display: flex;
+  }
+
+  .logo {
+    justify-self: center;
+  }
+
+  .actions {
+    gap: 6px;
+  }
+
+  .icon {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* ===========================
+   768px
+=========================== */
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .icon svg {
+    font-size: 20px;
+  }
+
+  .drawer {
+    width: min(280px, 85vw);
+  }
+}
+
+/* ===========================
+   576px
+=========================== */
+
+@media (max-width: 576px) {
+  .container {
+    height: 66px;
+    padding: 0 12px;
+    gap: 8px;
+  }
+
+  .actions {
+    gap: 4px;
+  }
+
+  .icon,
+  .mobileSearchBtn,
+  .menuBtn {
+    width: 34px;
+    height: 34px;
+  }
+
+  .icon span {
+    width: 16px;
+    height: 16px;
+    font-size: 9px;
+  }
+}
+
+/* ===========================
+   480px
+=========================== */
+
+@media (max-width: 480px) {
+  .container {
+    height: 60px;
+  }
+
+  .search {
+    width: 153px;
+    height: 40px;
+  }
+  .logo h2 {
+    letter-spacing: 1px;
+  }
+
+  .drawer {
+    width: min(250px, 85vw);
+  }
+
+  .drawerTop h3 {
+    font-size: 18px;
+  }
+}
+
+/* ===========================
+   360px
+   (very small phones — prevent squeeze/overflow)
+=========================== */
+
+@media (max-width: 360px) {
+  .container {
+    padding: 0 10px;
+    gap: 6px;
+  }
+  .search {
+    width: 123px;
+    height: 40px;
+  }
+  .actions {
+    gap: 2px;
+  }
+
+  .icon,
+  .mobileSearchBtn,
+  .menuBtn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .icon svg,
+  .mobileSearchBtn svg {
+    font-size: 18px;
+  }
+}
