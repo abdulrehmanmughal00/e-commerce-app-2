@@ -1,0 +1,96 @@
+.container {
+  height: auto;
+  width: 100%;
+}
+.hero {
+  position: relative;
+  width: 100%;
+  height: 125vh;
+  min-height: 350px;
+  overflow: hidden;
+}
+
+.banner {
+  object-fit: cover;
+  object-position: center;
+}
+
+.desktopBanner {
+  display: block;
+}
+
+.mobileBanner {
+  display: none;
+}
+
+/* Desktop */
+
+@media (max-width: 1440px) {
+  .hero {
+    height: 80vh;
+  }
+}
+
+@media (max-width: 1200px) {
+  .hero {
+    height: 72vh;
+  }
+}
+
+@media (max-width: 992px) {
+  .hero {
+    height: 60vh;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .hero {
+    height: 70vh;
+    min-height: 500px;
+  }
+
+  .desktopBanner {
+    display: none;
+  }
+
+  .mobileBanner {
+    display: block;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero {
+    height: 65vh;
+    min-height: 450px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    height: 60vh;
+    min-height: 400px;
+  }
+}
+
+@media (max-width: 390px) {
+  .hero {
+    height: 55vh;
+    min-height: 360px;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero {
+    height: 50vh;
+    min-height: 320px;
+  }
+}
+
+/*! categories */
+.categories{
+  height: 70vh;
+  width: 100%;
+  background-color: yellow;
+}
