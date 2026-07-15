@@ -2,6 +2,7 @@
   width: 100%;
   padding: 80px 0;
   background: #fff;
+  overflow-x: hidden;
 }
 
 .container {
@@ -11,7 +12,7 @@
 
 .heading {
   text-align: center;
-  font-size: 3rem;
+  font-size: clamp(1.6rem, 5vw, 3rem);
   font-weight: 700;
   color: #111;
   margin-bottom: 55px;
@@ -40,4 +41,81 @@
 .viewAll:hover {
   background: #111;
   color: #fff;
+}
+
+/* ===========================
+1400px
+=========================== */
+
+@media (max-width: 1400px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ===========================
+992px
+=========================== */
+
+@media (max-width: 992px) {
+  .newArrival {
+    padding: 60px 0;
+  }
+
+  .heading {
+    margin-bottom: 40px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+/* ===========================
+768px
+=========================== */
+
+@media (max-width: 768px) {
+  .newArrival {
+    padding: 50px 0;
+  }
+
+  .grid {
+    gap: 16px;
+  }
+
+  .viewAll {
+    width: 100%;
+    padding: 14px 20px;
+  }
+}
+
+/* ===========================
+576px
+=========================== */
+
+@media (max-width: 576px) {
+  .container {
+    width: 95%;
+  }
+
+  .heading {
+    margin-bottom: 30px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+}
+
+/* ===========================
+400px
+=========================== */
+
+@media (max-width: 400px) {
+  .grid {
+    gap: 10px;
+  }
 }
