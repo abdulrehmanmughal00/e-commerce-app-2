@@ -1,5 +1,8 @@
 import Image from "next/image";
 import Styles from "./Home.module.css";
+import Featured from "./Featured/Featured";
+import NewArrivals from "./newArrivals/NewArrivals";
+import Footer from "../footer/Footer";
 
 const Home = () => {
   return (
@@ -25,9 +28,9 @@ const Home = () => {
           className={`${Styles.banner} ${Styles.mobileBanner}`}
         />
       </section>
-      <section className={Styles.categories}>
-
-      </section>
+      <Featured />
+      <NewArrivals />
+      <Footer />
     </div>
   );
 };
