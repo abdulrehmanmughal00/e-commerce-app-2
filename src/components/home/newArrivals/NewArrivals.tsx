@@ -1,12 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
-import { FiShoppingBag } from "react-icons/fi";
 import Styles from "./NewArrivals.module.css";
+import type { Product } from "@/types/type";
+import Card from "@/components/card/Card";
 
-const products = [
+const products: Product[] = [
   {
     id: 1,
     title: "Paris Graphic Panel Tee (Grey & Brown)",
@@ -46,10 +45,6 @@ const products = [
 ];
 
 const NewArrivals = () => {
-  const [selectedSizes, setSelectedSizes] = useState<Record<number, string>>(
-    {},
-  );
-
   return (
     <section className={Styles.newArrival}>
       <div className={Styles.container}>
@@ -57,67 +52,9 @@ const NewArrivals = () => {
 
         <div className={Styles.grid}>
           {products.map((product) => (
-            <div key={product.id} className={Styles.card}>
-              {/* Discount */}
-
-              <span className={Styles.discount}>{product.discount}</span>
-
-              {/* Image */}
-
-              <Link href="/" className={Styles.imageWrapper}>
-                <Image
-                  src={product.image}
-                  alt={product.title}
-                  fill
-                  className={Styles.image}
-                  sizes="(max-width:768px) 100vw,
-                         (max-width:992px) 50vw,
-                         25vw"
-                />
-              </Link>
-
-              {/* Content */}
-
-              <div className={Styles.content}>
-                <h3 className={Styles.title}>{product.title}</h3>
-                <div className={Styles.price}>
-                  <span className={Styles.oldPrice}>Rs.{product.oldPrice}</span>
-
-                  <span className={Styles.newPrice}>Rs.{product.newPrice}</span>
-                </div>
-                {/* Sizes */}
-                <div className={Styles.sizes}>
-                  {product.sizes.map((size) => (
-                    <button
-                      key={size}
-                      onClick={() =>
-                        setSelectedSizes((prev) => ({
-                          ...prev,
-                          [product.id]: size,
-                        }))
-                      }
-                      className={`${Styles.sizeBtn} ${
-                        selectedSizes[product.id] === size
-                          ? Styles.activeSize
-                          : ""
-                      }`}
-                    >
-                      {size}
-                    </button>
-                  ))}
-                </div>{" "}
-                {/* Add To Cart */}
-                <button className={Styles.cartBtn}>
-                  <FiShoppingBag />
-
-                  <span>ADD TO CART</span>
-                </button>
-              </div>
-            </div>
+            <Card key={product.id} product={product} />
           ))}
         </div>
-
-        {/* View All */}
 
         <Link href="/" className={Styles.viewAll}>
           VIEW ALL
