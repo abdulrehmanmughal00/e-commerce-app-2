@@ -1,56 +1,53 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { FiShoppingBag } from "react-icons/fi";
 import Styles from "./Card.module.css";
+import { FiShoppingBag } from "react-icons/fi";
 import type { Product } from "@/types/type";
 
-interface Props {
+interface CardProps {
   product: Product;
 }
 
-const Card = ({ product }: Props) => {
-  const [selectedSize, setSelectedSize] = useState("");
+const Card = ({ product }: CardProps) => {
+  const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
 
   return (
     <div className={Styles.card}>
-      <span className={Styles.discount}>{product.discount}</span>
+      <div className={Styles.imageWrap}>
+        <span className={Styles.badge}>{product.discount}</span>
 
-      <Link href="/" className={Styles.imageWrapper}>
-        <Image
+        <img
           src={product.image}
           alt={product.title}
-          fill
           className={Styles.image}
         />
-      </Link>
+      </div>
 
-      <div className={Styles.content}>
+      <div className={Styles.info}>
         <h3 className={Styles.title}>{product.title}</h3>
 
-        <div className={Styles.price}>
+        <div className={Styles.priceRow}>
           <span className={Styles.oldPrice}>Rs.{product.oldPrice}</span>
-
-          <span className={Styles.newPrice}>Rs.{product.newPrice}</span>
+          <span className={Styles.newPrice}>RS.{product.newPrice}</span>
         </div>
 
         <div className={Styles.sizes}>
           {product.sizes.map((size) => (
             <button
               key={size}
-              onClick={() => setSelectedSize(size)}
+              type="button"
               className={`${Styles.sizeBtn} ${
-                selectedSize === size ? Styles.activeSize : ""
+                selectedSize === size ? Styles.sizeActive : ""
               }`}
+              onClick={() => setSelectedSize(size)}
             >
               {size}
             </button>
           ))}
         </div>
 
-        <button className={Styles.cartBtn}>
+        <button type="button" className={Styles.cartBtn}>
           <FiShoppingBag />
           <span>ADD TO CART</span>
         </button>

@@ -1,0 +1,234 @@
+.newArrivals {
+  width: 100%;
+  padding: 70px 0;
+  background: #fff;
+}
+
+.container {
+  width: min(1400px, 94%);
+  margin: auto;
+}
+
+/* ===========================
+Desktop Layout
+=========================== */
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.desktopSidebar {
+  width: 100%;
+}
+
+.products {
+  width: 100%;
+  min-width: 0;
+}
+
+/* ===========================
+Cards
+=========================== */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+
+/* ===========================
+Mobile Filter Bar
+=========================== */
+
+.mobileBar {
+  display: none;
+}
+
+.filterBtn {
+  width: 100%;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  border: 1px solid #ddd;
+  background: #fff;
+
+  cursor: pointer;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.filterBtn svg {
+  font-size: 20px;
+}
+
+/* ===========================
+Mobile Panel — Left Side Drawer
+=========================== */
+
+.mobilePanel {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: min(300px, 85vw);
+  height: 100vh;
+  height: 100dvh;
+
+  background: white;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  transform: translateX(-100%);
+  transition: transform .35s ease;
+
+  box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+
+  z-index: 1200;
+
+  margin: 0;
+  border: none;
+
+  padding: 20px;
+}
+
+.showPanel {
+  transform: translateX(0);
+}
+
+.applyBtn {
+  width: 100%;
+
+  margin-top: 20px;
+
+  height: 48px;
+
+  border: none;
+
+  background: black;
+  color: white;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: .3s;
+}
+
+.applyBtn:hover {
+  background: #d3262d;
+}
+
+/* ===========================
+1400
+=========================== */
+
+@media (max-width:1400px){
+
+.grid{
+grid-template-columns:repeat(3,1fr);
+}
+
+}
+
+/* ===========================
+992
+=========================== */
+
+@media (max-width:992px){
+
+.wrapper{
+grid-template-columns:1fr;
+}
+
+.desktopSidebar{
+display:none;
+}
+
+.mobileBar{
+display:block;
+margin-bottom:20px;
+}
+
+.grid{
+grid-template-columns:repeat(2,1fr);
+gap:20px;
+}
+
+}
+
+/* ===========================
+768
+=========================== */
+
+@media (max-width:768px){
+
+.newArrivals{
+padding:50px 0;
+}
+
+.grid{
+grid-template-columns:repeat(2,1fr);
+gap:16px;
+}
+
+}
+
+/* ===========================
+576
+=========================== */
+
+@media (max-width:576px){
+
+.container{
+width:95%;
+}
+
+.grid{
+grid-template-columns:repeat(2,1fr);
+gap:14px;
+}
+
+.filterBtn{
+height:50px;
+font-size:14px;
+}
+
+.mobilePanel{
+padding:16px;
+}
+
+}
+
+/* ===========================
+400
+=========================== */
+
+@media (max-width:400px){
+
+.grid{
+gap:10px;
+}
+
+.filterBtn{
+font-size:13px;
+}
+
+.applyBtn{
+height:45px;
+}
+
+.mobilePanel{
+width:min(260px, 88vw);
+}
+
+}
