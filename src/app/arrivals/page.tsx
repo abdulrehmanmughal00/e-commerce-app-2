@@ -98,7 +98,11 @@ const NewArrivals = () => {
             mobileFilter ? Styles.showPanel : ""
           }`}
         >
-          <Sidebar sort={sort} onSortChange={setSort} />
+          <Sidebar
+            sort={sort}
+            onSortChange={setSort}
+            onClose={() => setMobileFilter(false)}
+          />
 
           <button
             className={Styles.applyBtn}

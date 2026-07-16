@@ -2,14 +2,15 @@
 
 import { useState } from "react";
 import Styles from "./Sidebar.module.css";
-import { FiPlus, FiMinus, FiChevronDown } from "react-icons/fi";
+import { FiPlus, FiMinus, FiChevronDown, FiX } from "react-icons/fi";
 
 interface SidebarProps {
   sort: string;
   onSortChange: (value: string) => void;
+  onClose?: () => void;
 }
 
-const Sidebar = ({ sort, onSortChange }: SidebarProps) => {
+const Sidebar = ({ sort, onSortChange, onClose }: SidebarProps) => {
   const [availability, setAvailability] = useState(false);
   const [price, setPrice] = useState(false);
   const [productType, setProductType] = useState(false);
@@ -17,6 +18,22 @@ const Sidebar = ({ sort, onSortChange }: SidebarProps) => {
 
   return (
     <aside className={Styles.sidebar}>
+      {/* ===========================
+          Mobile Header (Filter and Sort + Close)
+      =========================== */}
+
+      <div className={Styles.mobileHeader}>
+        <h3>FILTER AND SORT</h3>
+
+        <button
+          type="button"
+          className={Styles.closeBtn}
+          onClick={() => onClose?.()}
+        >
+          <FiX />
+        </button>
+      </div>
+
       {/* ===========================
           Sort By
       =========================== */}

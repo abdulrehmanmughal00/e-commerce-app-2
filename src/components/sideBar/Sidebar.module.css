@@ -9,6 +9,41 @@
 }
 
 /* ==========================
+Mobile Header (Filter and Sort + Close)
+========================== */
+
+.mobileHeader {
+  display: none;
+  color: black;
+}
+
+.mobileHeader h3 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.closeBtn {
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+}
+
+.closeBtn svg {
+  font-size: 26px;
+  color: #111;
+}
+
+/* ==========================
 Sort By
 ========================== */
 
@@ -25,7 +60,7 @@ Sort By
 
   font-size: 14px;
   font-weight: 600;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
 }
 
 .selectWrap {
@@ -192,7 +227,6 @@ Price
   gap: 10px;
 
   margin-bottom: 18px;
-
   width: 100%;
 }
 
@@ -268,6 +302,15 @@ Tablet
     height: 60px;
   }
 
+  .mobileHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid #e8e8e8;
+    margin-bottom: 4px;
+  }
+
   .sortSection {
     padding: 20px 20px 22px;
     margin-bottom: 0;
@@ -281,6 +324,7 @@ Mobile
 @media (max-width: 768px) {
   .priceInputs {
     flex-direction: column;
+    height: 9vh;
   }
 
   .priceInputs input {
@@ -318,6 +362,12 @@ Small Mobile
     height: 44px;
     font-size: 14px;
   }
+
+  .mobileHeader h3 {
+    font-size: 20px;
+  }
+
+
 }
 
 /* ==========================
@@ -339,5 +389,9 @@ Very Small
 
   .sortSection {
     padding: 16px 16px 18px;
+  }
+
+  .mobileHeader h3 {
+    font-size: 18px;
   }
 }
