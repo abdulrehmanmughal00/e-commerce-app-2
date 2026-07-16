@@ -5,6 +5,7 @@ import Link from "next/link";
 import styles from "./Nav.module.css";
 
 import { FiMenu, FiX, FiSearch, FiShoppingBag } from "react-icons/fi";
+import { useCart } from "@/hooks/useCart";
 
 const navLinks = [
   { title: "NEW ARRIVALS", href: "/new-arrivals" },
@@ -15,6 +16,7 @@ const navLinks = [
 ];
 
 export default function Nav() {
+  const { cartCount } = useCart();
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -55,11 +57,12 @@ export default function Nav() {
                 <FiSearch />
               </button>
             </div>
-
-            <button className={styles.icon}>
-              <FiShoppingBag />
-              <span>1</span>
-            </button>
+            <Link href="/cart">
+              <button className={styles.icon}>
+                <FiShoppingBag />
+                <span>{cartCount}</span>
+              </button>
+            </Link>
           </div>
         </div>
       </header>

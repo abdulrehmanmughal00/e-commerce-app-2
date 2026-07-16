@@ -1,0 +1,70 @@
+.item {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  background: white;
+}
+
+
+.image img {
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+
+.details h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+
+.details p {
+  margin: 0;
+  color: #555;
+}
+
+
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+
+.actions button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+
+.actions span {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+
+
+.remove {
+  width: fit-content;
+  margin-top: 10px;
+  border: none;
+  background: transparent;
+  color: red;
+  cursor: pointer;
+  padding: 0;
+}
