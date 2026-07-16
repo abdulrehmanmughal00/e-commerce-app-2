@@ -37,28 +37,42 @@ export default function CartProvider({
 }: {
   children: ReactNode;
 }) {
-  const [cart, setCart] = useState<CartItem[]>([]);
 
-  useEffect(() => {
-    const savedCart = localStorage.getItem("cart");
+  const [cart, setCart] = useState<CartItem[]>(() => {
+    if (typeof window !== "undefined") {
+      const savedCart = localStorage.getItem("cart");
 
-    if (savedCart) {
-      setCart(JSON.parse(savedCart));
+      return savedCart
+        ? JSON.parse(savedCart)
+        : [];
     }
-  }, []);
 
+    return [];
+  });
+
+
+  // Save cart in localStorage
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem(
+      "cart",
+      JSON.stringify(cart)
+    );
   }, [cart]);
 
 
-  const addToCart = (product: Product, size: string) => {
+  const addToCart = (
+    product: Product,
+    size: string
+  ) => {
+
     setCart((prev) => {
+
       const existing = prev.find(
         (item) =>
           item.id === product.id &&
           item.selectedSize === size
       );
+
 
       if (existing) {
         return prev.map((item) =>
@@ -72,6 +86,7 @@ export default function CartProvider({
         );
       }
 
+
       return [
         ...prev,
         {
@@ -80,36 +95,58 @@ export default function CartProvider({
           selectedSize: size,
         },
       ];
+
     });
   };
 
 
-  const removeFromCart = (id: number, size: string) => {
+
+  const removeFromCart = (
+    id: number,
+    size: string
+  ) => {
+
     setCart((prev) =>
       prev.filter(
         (item) =>
-          !(item.id === id && item.selectedSize === size)
+          !(
+            item.id === id &&
+            item.selectedSize === size
+          )
       )
     );
+
   };
 
 
-  const increaseQuantity = (id: number, size: string) => {
+
+  const increaseQuantity = (
+    id: number,
+    size: string
+  ) => {
+
     setCart((prev) =>
       prev.map((item) =>
         item.id === id &&
         item.selectedSize === size
           ? {
               ...item,
-              quantity: item.quantity + 1,
+              quantity:
+                item.quantity + 1,
             }
           : item
       )
     );
+
   };
 
 
-  const decreaseQuantity = (id: number, size: string) => {
+
+  const decreaseQuantity = (
+    id: number,
+    size: string
+  ) => {
+
     setCart((prev) =>
       prev.map((item) =>
         item.id === id &&
@@ -117,12 +154,15 @@ export default function CartProvider({
         item.quantity > 1
           ? {
               ...item,
-              quantity: item.quantity - 1,
+              quantity:
+                item.quantity - 1,
             }
           : item
       )
     );
+
   };
+
 
 
   const clearCart = () => {
@@ -130,21 +170,31 @@ export default function CartProvider({
   };
 
 
+
   const cartCount = useMemo(() => {
+
     return cart.reduce(
-      (total, item) => total + item.quantity,
+      (total, item) =>
+        total + item.quantity,
       0
     );
+
   }, [cart]);
+
 
 
   const cartTotal = useMemo(() => {
+
     return cart.reduce(
       (total, item) =>
-        total + item.newPrice * item.quantity,
+        total +
+        item.newPrice *
+        item.quantity,
       0
     );
+
   }, [cart]);
+
 
 
   return (
@@ -153,6 +203,7 @@ export default function CartProvider({
         cart,
         cartCount,
         cartTotal,
+
         addToCart,
         removeFromCart,
         increaseQuantity,
@@ -166,14 +217,19 @@ export default function CartProvider({
 }
 
 
+
 export function useCartContext() {
-  const context = useContext(CartContext);
+
+  const context =
+    useContext(CartContext);
+
 
   if (!context) {
     throw new Error(
       "useCartContext must be used inside CartProvider"
     );
   }
+
 
   return context;
 }

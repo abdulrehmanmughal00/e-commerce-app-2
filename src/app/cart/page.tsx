@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { toast } from "sonner";
+
 import { useCartContext } from "@/context/CartContext";
 import Styles from "./Cart.module.css";
 
@@ -14,6 +16,8 @@ const CartPage = () => {
     removeFromCart,
     clearCart,
   } = useCartContext();
+
+  const [isOrdering, setIsOrdering] = useState(false);
 
   const [customer, setCustomer] = useState({
     name: "",
@@ -36,9 +40,16 @@ const CartPage = () => {
       !customer.address ||
       !customer.city
     ) {
-      alert("Please fill customer details");
+      toast.error("Please fill customer details");
       return;
     }
+
+    if (!/^92\d{10}$/.test(customer.phone)) {
+      toast.error("Please enter valid Pakistan phone number");
+      return;
+    }
+
+    setIsOrdering(true);
 
     let message = "Hello, I want to place an order:\n\n";
 
@@ -53,18 +64,28 @@ const CartPage = () => {
       message += `Product: ${item.title}\n`;
       message += `Size: ${item.selectedSize}\n`;
       message += `Quantity: ${item.quantity}\n`;
-      message += `Price: Rs. ${item.newPrice * item.quantity}\n\n`;
+      message += `Price: Rs. ${item.newPrice * item.quantity}\n`;
+      message += `Product Link: ${window.location.origin}/product/${item.id}\n\n`;
     });
 
     message += `Total: Rs. ${cartTotal}`;
 
     const phoneNumber = "923332081678";
 
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+      message,
+    )}`;
 
-    window.open(url, "_blank");
+    const whatsappWindow = window.open(url, "_blank");
 
-    clearCart();
+    if (whatsappWindow) {
+      clearCart();
+      toast.success("Order details sent to WhatsApp");
+      setIsOrdering(false);
+    } else {
+      toast.error("Please allow popup to open WhatsApp");
+      setIsOrdering(false);
+    }
   };
 
   if (cart.length === 0) {
@@ -141,7 +162,7 @@ const CartPage = () => {
 
           <input
             name="phone"
-            placeholder="Phone Number"
+            placeholder="Phone Number (92XXXXXXXXXX)"
             value={customer.phone}
             onChange={handleChange}
           />
@@ -162,11 +183,12 @@ const CartPage = () => {
 
           <div className={Styles.total}>
             <span>Total:</span>
-
             <strong>Rs. {cartTotal}</strong>
           </div>
 
-          <button onClick={orderOnWhatsApp}>Order on WhatsApp</button>
+          <button onClick={orderOnWhatsApp} disabled={isOrdering}>
+            {isOrdering ? "Opening WhatsApp..." : "Order on WhatsApp"}
+          </button>
         </div>
       </div>
     </div>

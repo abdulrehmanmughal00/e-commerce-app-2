@@ -4,6 +4,7 @@ import { useState } from "react";
 import Styles from "./Card.module.css";
 import { FiShoppingBag } from "react-icons/fi";
 import Image from "next/image";
+import { toast } from "sonner";
 
 import type { Product } from "@/types/type";
 import { useCart } from "@/hooks/useCart";
@@ -18,6 +19,12 @@ const Card = ({ product }: CardProps) => {
   );
 
   const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    addToCart(product, selectedSize);
+
+    toast.success(`${product.title} added to cart`);
+  };
 
   return (
     <div className={Styles.card}>
@@ -34,12 +41,10 @@ const Card = ({ product }: CardProps) => {
         />
       </div>
 
-
       <div className={Styles.info}>
         <h3 className={Styles.title}>
           {product.title}
         </h3>
-
 
         <div className={Styles.priceRow}>
           <span className={Styles.oldPrice}>
@@ -51,7 +56,6 @@ const Card = ({ product }: CardProps) => {
           </span>
         </div>
 
-
         <div className={Styles.sizes}>
           {product.sizes.map((size) => (
             <button
@@ -62,22 +66,17 @@ const Card = ({ product }: CardProps) => {
                   ? Styles.sizeActive
                   : ""
               }`}
-              onClick={() =>
-                setSelectedSize(size)
-              }
+              onClick={() => setSelectedSize(size)}
             >
               {size}
             </button>
           ))}
         </div>
 
-
         <button
           type="button"
           className={Styles.cartBtn}
-          onClick={() =>
-            addToCart(product, selectedSize)
-          }
+          onClick={handleAddToCart}
         >
           <FiShoppingBag />
 
@@ -85,7 +84,6 @@ const Card = ({ product }: CardProps) => {
             ADD TO CART
           </span>
         </button>
-
       </div>
     </div>
   );
