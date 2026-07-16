@@ -7,11 +7,11 @@ import styles from "./Nav.module.css";
 import { FiMenu, FiX, FiSearch, FiShoppingBag } from "react-icons/fi";
 
 const navLinks = [
-  { title: "NEW ARRIVALS", href: "/" },
-  { title: "POLOS", href: "/" },
-  { title: "T-SHIRTS", href: "/" },
-  { title: "TROUSERS", href: "/" },
-  { title: "REVIEWS", href: "/" },
+  { title: "NEW ARRIVALS", href: "/new-arrivals" },
+  { title: "POLOS", href: "/polos" },
+  { title: "T-SHIRTS", href: "/t-shirt" },
+  { title: "TROUSERS", href: "/trousers" },
+  { title: "REVIEWS", href: "/reviews" },
 ];
 
 export default function Nav() {

@@ -40,6 +40,12 @@
   font-weight: 700;
   letter-spacing: 2px;
   margin: 0;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.logo h2:active {
+  transform: scale(0.95);
 }
 
 .logo span {
@@ -144,10 +150,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   position: relative;
+
+  transition: transform 0.15s ease;
 }
 
+.icon:active {
+  transform: scale(0.9);
+}
 .icon svg {
   font-size: 22px;
 }

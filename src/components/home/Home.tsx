@@ -2,7 +2,6 @@ import Image from "next/image";
 import Styles from "./Home.module.css";
 import Featured from "./Featured/Featured";
 import NewArrivals from "./newArrivals/NewArrivals";
-import Footer from "../footer/Footer";
 
 const Home = () => {
   return (
@@ -30,7 +29,6 @@ const Home = () => {
       </section>
       <Featured />
       <NewArrivals />
-      <Footer />
     </div>
   );
 };

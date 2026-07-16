@@ -13,4 +13,5 @@ export interface Product {
   newPrice: number;
   discount: string;
   sizes: string[];
+  category: string;
 }
