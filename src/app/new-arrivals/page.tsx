@@ -2,17 +2,16 @@
 
 import { useState } from "react";
 import Styles from "./Arrivals.module.css";
-import Sidebar from "@/components/sidebar/Sidebar";
 import Card from "@/components/card/Card";
 
 import { products } from "@/data/Product";
 import { FiFilter, FiX } from "react-icons/fi";
+import Sidebar from "@/components/sideBar/Sidebar";
 
 const NewArrivals = () => {
   const [sort, setSort] = useState("Featured");
   const [mobileFilter, setMobileFilter] = useState(false);
 
-  // ✅ Sirf New Arrivals products
   const newArrivals = products.filter(
     (item) => item.category === "new-arrivals",
   );

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Styles from "./Card.module.css";
 import { FiShoppingBag } from "react-icons/fi";
 import type { Product } from "@/types/type";
+import Image from "next/image";
 
 interface CardProps {
   product: Product;
@@ -15,12 +16,13 @@ const Card = ({ product }: CardProps) => {
   return (
     <div className={Styles.card}>
       <div className={Styles.imageWrap}>
-        <span className={Styles.badge}>{product.discount}</span>
+        <span className={Styles.badge}>{product.discount} </span>
 
-        <img
+        <Image
           src={product.image}
           alt={product.title}
-          className={Styles.image}
+          width={300}
+          height={300}
         />
       </div>
 
