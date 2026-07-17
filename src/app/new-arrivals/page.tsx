@@ -17,7 +17,7 @@ const NewArrivals = () => {
     sizes: [] as string[],
 
     categories: [] as string[],
-
+    availability: [] as string[],
     minPrice: "",
 
     maxPrice: "",
@@ -46,7 +46,21 @@ const NewArrivals = () => {
 
     return true;
   });
+  // ==========================
+  // AVAILABILITY FILTER
+  // ==========================
 
+  filteredProducts = filteredProducts.filter((item) => {
+    if (filters.availability.length > 0) {
+      const status = item.inStock ? "in-stock" : "out-of-stock";
+
+      if (!filters.availability.includes(status)) {
+        return false;
+      }
+    }
+
+    return true;
+  });
   // ==========================
   // PRODUCT TYPE FILTER
   // ==========================

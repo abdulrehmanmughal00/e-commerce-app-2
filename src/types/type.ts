@@ -14,4 +14,5 @@ export interface Product {
   discount: string;
   sizes: string[];
   category: string;
+  inStock: boolean;
 }

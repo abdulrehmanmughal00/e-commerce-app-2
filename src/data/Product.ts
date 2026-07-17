@@ -4,7 +4,6 @@ export const products: Product[] = [
   // ==========================
   // New Arrivals (1–15)
   // ==========================
-
   {
     id: 6,
     title: "Summer Cotton Tee",
@@ -14,6 +13,7 @@ export const products: Product[] = [
     discount: "41% Off",
     sizes: ["S", "M", "L", "XL"],
     category: "new-arrivals",
+    inStock: true,
   },
   {
     id: 7,
@@ -24,6 +24,7 @@ export const products: Product[] = [
     discount: "35% Off",
     sizes: ["S", "M", "L", "XL"],
     category: "new-arrivals",
+    inStock: false,
   },
   {
     id: 8,
@@ -34,6 +35,7 @@ export const products: Product[] = [
     discount: "33% Off",
     sizes: ["S", "M", "L", "XL"],
     category: "new-arrivals",
+    inStock: true,
   },
   {
     id: 9,
@@ -44,8 +46,8 @@ export const products: Product[] = [
     discount: "36% Off",
     sizes: ["S", "M", "L", "XL"],
     category: "new-arrivals",
+    inStock: true,
   },
-
   {
     id: 20,
     title: "Cotton Polo Shirt",
@@ -55,6 +57,7 @@ export const products: Product[] = [
     discount: "25% Off",
     sizes: ["S", "M", "L", "XL"],
     category: "polos",
+    inStock: true,
   },
   {
     id: 21,
@@ -65,6 +68,7 @@ export const products: Product[] = [
     discount: "24% Off",
     sizes: ["S", "M", "L", "XL"],
     category: "polos",
+    inStock: false,
   },
   {
     id: 22,
@@ -75,6 +79,7 @@ export const products: Product[] = [
     discount: "24% Off",
     sizes: ["S", "M", "L", "XL"],
     category: "polos",
+    inStock: true,
   },
   {
     id: 23,
@@ -85,6 +90,7 @@ export const products: Product[] = [
     discount: "27% Off",
     sizes: ["S", "M", "L", "XL"],
     category: "polos",
+    inStock: true,
   },
   {
     id: 24,
@@ -95,6 +101,7 @@ export const products: Product[] = [
     discount: "26% Off",
     sizes: ["S", "M", "L", "XL"],
     category: "polos",
+    inStock: false,
   },
   {
     id: 25,
@@ -105,6 +112,7 @@ export const products: Product[] = [
     discount: "25% Off",
     sizes: ["S", "M", "L", "XL"],
     category: "polos",
+    inStock: true,
   },
   {
     id: 26,
@@ -115,6 +123,7 @@ export const products: Product[] = [
     discount: "26% Off",
     sizes: ["S", "M", "L", "XL"],
     category: "polos",
+    inStock: true,
   },
   {
     id: 27,
@@ -125,41 +134,8 @@ export const products: Product[] = [
     discount: "27% Off",
     sizes: ["S", "M", "L", "XL"],
     category: "polos",
+    inStock: false,
   },
-  {
-    id: 28,
-    title: "Premium Cotton Polo",
-    image: "/productImage/product-28.jpg",
-    oldPrice: 2550,
-    newPrice: 1949,
-    discount: "24% Off",
-    sizes: ["S", "M", "L", "XL"],
-    category: "polos",
-  },
-  {
-    id: 29,
-    title: "Stretch Polo",
-    image: "/productImage/product-29.jpg",
-    oldPrice: 2450,
-    newPrice: 1849,
-    discount: "24% Off",
-    sizes: ["S", "M", "L", "XL"],
-    category: "polos",
-  },
-  {
-    id: 30,
-    title: "Casual Polo",
-    image: "/productImage/product-30.jpg",
-    oldPrice: 2200,
-    newPrice: 1599,
-    discount: "27% Off",
-    sizes: ["S", "M", "L", "XL"],
-    category: "polos",
-  },
-  // ==========================
-  // T-Shirts (31–45)
-  // ==========================
-
   {
     id: 37,
     title: "Urban Street Tee",
@@ -169,6 +145,7 @@ export const products: Product[] = [
     discount: "28% Off",
     sizes: ["S", "M", "L", "XL"],
     category: "t-shirts",
+    inStock: true,
   },
   {
     id: 38,
@@ -179,6 +156,7 @@ export const products: Product[] = [
     discount: "31% Off",
     sizes: ["S", "M", "L", "XL"],
     category: "t-shirts",
+    inStock: false,
   },
   {
     id: 39,
@@ -189,6 +167,7 @@ export const products: Product[] = [
     discount: "26% Off",
     sizes: ["S", "M", "L", "XL"],
     category: "t-shirts",
+    inStock: true,
   },
   {
     id: 40,
@@ -199,8 +178,8 @@ export const products: Product[] = [
     discount: "35% Off",
     sizes: ["S", "M", "L", "XL"],
     category: "t-shirts",
+    inStock: true,
   },
-
   {
     id: 45,
     title: "Classic White Tee",
@@ -210,10 +189,13 @@ export const products: Product[] = [
     discount: "31% Off",
     sizes: ["S", "M", "L", "XL"],
     category: "t-shirts",
+    inStock: false,
   },
+
   // ==========================
-  // Trousers (46–60)
+  // Trousers
   // ==========================
+
   {
     id: 46,
     title: "Regular Fit Trousers",
@@ -223,6 +205,7 @@ export const products: Product[] = [
     discount: "21% Off",
     sizes: ["30", "32", "34", "36"],
     category: "trousers",
+    inStock: true,
   },
   {
     id: 47,
@@ -233,6 +216,7 @@ export const products: Product[] = [
     discount: "21% Off",
     sizes: ["30", "32", "34", "36"],
     category: "trousers",
+    inStock: true,
   },
   {
     id: 48,
@@ -243,6 +227,7 @@ export const products: Product[] = [
     discount: "20% Off",
     sizes: ["30", "32", "34", "36"],
     category: "trousers",
+    inStock: false,
   },
   {
     id: 49,
@@ -253,6 +238,7 @@ export const products: Product[] = [
     discount: "21% Off",
     sizes: ["30", "32", "34", "36"],
     category: "trousers",
+    inStock: true,
   },
   {
     id: 50,
@@ -263,6 +249,7 @@ export const products: Product[] = [
     discount: "24% Off",
     sizes: ["30", "32", "34", "36"],
     category: "trousers",
+    inStock: true,
   },
   {
     id: 51,
@@ -273,8 +260,8 @@ export const products: Product[] = [
     discount: "19% Off",
     sizes: ["30", "32", "34", "36"],
     category: "trousers",
+    inStock: false,
   },
-
   {
     id: 60,
     title: "Everyday Cotton Trousers",
@@ -284,5 +271,6 @@ export const products: Product[] = [
     discount: "21% Off",
     sizes: ["30", "32", "34", "36"],
     category: "trousers",
+    inStock: true,
   },
 ];
