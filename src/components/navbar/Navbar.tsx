@@ -1,11 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+
 import styles from "./Nav.module.css";
 
 import { FiMenu, FiX, FiSearch, FiShoppingBag } from "react-icons/fi";
+
 import { useCart } from "@/hooks/useCart";
+import { products } from "@/data/Product";
 
 const navLinks = [
   { title: "NEW ARRIVALS", href: "/new-arrivals" },
@@ -15,15 +20,51 @@ const navLinks = [
   { title: "REVIEWS", href: "/reviews" },
 ];
 
-export default function Nav() {
+export default function Navbar() {
+  const router = useRouter();
+
   const { cartCount } = useCart();
+
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const [search, setSearch] = useState("");
+
+  const [showResults, setShowResults] = useState(false);
+
+  const searchRef = useRef<HTMLDivElement>(null);
+
+  const filteredProducts = products
+    .filter((item) => item.title.toLowerCase().includes(search.toLowerCase()))
+    .slice(0, 6);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target as Node)
+      ) {
+        setShowResults(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+  const handleSearch = () => {
+    if (!search.trim()) return;
+
+    router.push(`/search?q=${encodeURIComponent(search)}`);
+
+    setShowResults(false);
+    setSearch("");
+  };
 
   return (
     <>
       <header className={styles.header}>
         <div className={styles.container}>
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu */}
 
           <button className={styles.menuBtn} onClick={() => setMenuOpen(true)}>
             <FiMenu />
@@ -37,7 +78,7 @@ export default function Nav() {
             </h2>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Nav */}
 
           <nav className={styles.nav}>
             {navLinks.map((item) => (
@@ -47,19 +88,73 @@ export default function Nav() {
             ))}
           </nav>
 
-          {/* Right Side */}
+          {/* Right */}
 
           <div className={styles.actions}>
-            <div className={styles.search}>
-              <input type="text" placeholder="Search..." />
+            <div className={styles.search} ref={searchRef}>
+              <input
+                type="text"
+                placeholder="Search products..."
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
 
-              <button>
+                  setShowResults(true);
+                }}
+                onFocus={() => setShowResults(true)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleSearch();
+                  }
+                }}
+              />
+
+              <button onClick={handleSearch} type="button">
                 <FiSearch />
               </button>
+
+              {showResults && search.trim() && (
+                <div className={styles.searchDropdown}>
+                  {filteredProducts.length > 0 ? (
+                    filteredProducts.map((item) => (
+                      <Link
+                        key={item.id}
+                        href={`/product/${item.id}`}
+                        className={styles.searchItem}
+                        onClick={() => {
+                          setShowResults(false);
+
+                          setSearch("");
+                        }}
+                      >
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          width={55}
+                          height={55}
+                        />
+
+                        <div>
+                          <h4>{item.title}</h4>
+
+                          <span>
+                            Rs.
+                            {item.newPrice}
+                          </span>
+                        </div>
+                      </Link>
+                    ))
+                  ) : (
+                    <div className={styles.noResult}>No products found</div>
+                  )}
+                </div>
+              )}
             </div>
+
             <Link href="/cart">
               <button className={styles.icon}>
                 <FiShoppingBag />
+
                 <span>{cartCount}</span>
               </button>
             </Link>
