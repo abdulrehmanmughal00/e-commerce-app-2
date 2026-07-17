@@ -106,7 +106,7 @@ Sizes
   font-weight: 600;
 
   cursor: pointer;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .sizeBtn:hover {
@@ -138,10 +138,10 @@ Add to Cart
 
   font-size: 13px;
   font-weight: 700;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
 
   cursor: pointer;
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .cartBtn svg {

@@ -38,6 +38,7 @@ const Card = ({ product }: CardProps) => {
           alt={product.title}
           width={300}
           height={300}
+          className={Styles.image}
         />
       </div>
 
