@@ -10,18 +10,93 @@ import Sidebar from "@/components/sideBar/Sidebar";
 
 const NewArrivals = () => {
   const [sort, setSort] = useState("Featured");
+
   const [mobileFilter, setMobileFilter] = useState(false);
 
-  const newArrivals = products.filter(
-    (item) => item.category === "new-arrivals",
-  );
+  const [filters, setFilters] = useState({
+    sizes: [] as string[],
+
+    categories: [] as string[],
+
+    minPrice: "",
+
+    maxPrice: "",
+  });
+
+  // ==========================
+  // ALL PRODUCTS
+  // ==========================
+
+  let filteredProducts = [...products];
+
+  // ==========================
+  // SIZE FILTER
+  // ==========================
+
+  filteredProducts = filteredProducts.filter((item) => {
+    if (filters.sizes.length > 0) {
+      const availableSize = item.sizes.some((size) =>
+        filters.sizes.includes(size),
+      );
+
+      if (!availableSize) {
+        return false;
+      }
+    }
+
+    return true;
+  });
+
+  // ==========================
+  // PRODUCT TYPE FILTER
+  // ==========================
+
+  filteredProducts = filteredProducts.filter((item) => {
+    if (filters.categories.length > 0) {
+      if (!filters.categories.includes(item.category)) {
+        return false;
+      }
+    }
+
+    return true;
+  });
+
+  // ==========================
+  // PRICE FILTER
+  // ==========================
+
+  filteredProducts = filteredProducts.filter((item) => {
+    if (filters.minPrice) {
+      if (item.newPrice < Number(filters.minPrice)) {
+        return false;
+      }
+    }
+
+    if (filters.maxPrice) {
+      if (item.newPrice > Number(filters.maxPrice)) {
+        return false;
+      }
+    }
+
+    return true;
+  });
+
+  // ==========================
+  // SORT
+  // ==========================
+
+  if (sort === "Price Low → High") {
+    filteredProducts.sort((a, b) => a.newPrice - b.newPrice);
+  }
+
+  if (sort === "Price High → Low") {
+    filteredProducts.sort((a, b) => b.newPrice - a.newPrice);
+  }
 
   return (
     <section className={Styles.newArrivals}>
       <div className={Styles.container}>
-        {/* ===========================
-            Mobile Filter Bar
-        =========================== */}
+        {/* MOBILE FILTER BUTTON */}
 
         <div className={Styles.mobileBar}>
           <button
@@ -29,22 +104,22 @@ const NewArrivals = () => {
             onClick={() => setMobileFilter(!mobileFilter)}
           >
             {mobileFilter ? <FiX /> : <FiFilter />}
+
             <span>Filter & Sort</span>
           </button>
         </div>
 
-        {/* ===========================
-            Mobile Panel
-        =========================== */}
+        {/* MOBILE SIDEBAR */}
 
         <div
-          className={`${Styles.mobilePanel} ${
-            mobileFilter ? Styles.showPanel : ""
-          }`}
+          className={`${Styles.mobilePanel}
+${mobileFilter ? Styles.showPanel : ""}`}
         >
           <Sidebar
             sort={sort}
             onSortChange={setSort}
+            filters={filters}
+            setFilters={setFilters}
             onClose={() => setMobileFilter(false)}
           />
 
@@ -56,20 +131,27 @@ const NewArrivals = () => {
           </button>
         </div>
 
-        {/* ===========================
-            Desktop Layout
-        =========================== */}
+        {/* DESKTOP LAYOUT */}
 
         <div className={Styles.wrapper}>
           <div className={Styles.desktopSidebar}>
-            <Sidebar sort={sort} onSortChange={setSort} />
+            <Sidebar
+              sort={sort}
+              onSortChange={setSort}
+              filters={filters}
+              setFilters={setFilters}
+            />
           </div>
 
           <div className={Styles.products}>
             <div className={Styles.grid}>
-              {newArrivals.map((product) => (
-                <Card key={product.id} product={product} />
-              ))}
+              {filteredProducts.length > 0 ? (
+                filteredProducts.map((product) => (
+                  <Card key={product.id} product={product} />
+                ))
+              ) : (
+                <p>No Products Found</p>
+              )}
             </div>
           </div>
         </div>

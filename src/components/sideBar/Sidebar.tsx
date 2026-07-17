@@ -7,208 +7,504 @@ import { FiPlus, FiMinus, FiChevronDown, FiX } from "react-icons/fi";
 interface SidebarProps {
   sort: string;
   onSortChange: (value: string) => void;
+
+  filters: {
+    sizes: string[];
+    categories: string[];
+    minPrice: string;
+    maxPrice: string;
+  };
+
+  setFilters: React.Dispatch<
+    React.SetStateAction<{
+      sizes: string[];
+      categories: string[];
+      minPrice: string;
+      maxPrice: string;
+    }>
+  >;
+
   onClose?: () => void;
 }
 
-const Sidebar = ({ sort, onSortChange, onClose }: SidebarProps) => {
-  const [availability, setAvailability] = useState(false);
-  const [price, setPrice] = useState(false);
-  const [productType, setProductType] = useState(false);
-  const [size, setSize] = useState(false);
 
-  return (
-    <aside className={Styles.sidebar}>
-      {/* ===========================
-          Mobile Header (Filter and Sort + Close)
-      =========================== */}
+const Sidebar = ({
+  sort,
+  onSortChange,
+  filters,
+  setFilters,
+  onClose,
+}: SidebarProps) => {
 
-      <div className={Styles.mobileHeader}>
-        <h3>FILTER AND SORT</h3>
 
-        <button
-          type="button"
-          className={Styles.closeBtn}
-          onClick={() => onClose?.()}
-        >
-          <FiX />
-        </button>
-      </div>
+const [availability,setAvailability]=useState(false);
+const [price,setPrice]=useState(false);
+const [productType,setProductType]=useState(false);
+const [size,setSize]=useState(false);
 
-      {/* ===========================
-          Sort By
-      =========================== */}
 
-      <div className={Styles.sortSection}>
-        <label className={Styles.sortLabel}>SORT BY</label>
 
-        <div className={Styles.selectWrap}>
-          <select
-            value={sort}
-            onChange={(e) => onSortChange(e.target.value)}
-          >
-            <option>Featured</option>
-            <option>Newest</option>
-            <option>Price Low → High</option>
-            <option>Price High → Low</option>
-          </select>
+const handleSize=(value:string)=>{
 
-          <FiChevronDown />
-        </div>
-      </div>
+setFilters(prev=>({
+...prev,
 
-      {/* ===========================
-          Availability
-      =========================== */}
+sizes:prev.sizes.includes(value)
 
-      <div className={Styles.section}>
-        <button
-          type="button"
-          className={Styles.header}
-          onClick={() => setAvailability(!availability)}
-        >
-          <span>AVAILABILITY</span>
+?prev.sizes.filter(item=>item!==value)
 
-          {availability ? <FiMinus /> : <FiPlus />}
-        </button>
+:[...prev.sizes,value]
 
-        <div
-          className={`${Styles.content} ${
-            availability ? Styles.open : ""
-          }`}
-        >
-          <label className={Styles.checkbox}>
-            <input type="checkbox" />
-            <span>In Stock (18)</span>
-          </label>
+}));
 
-          <label className={Styles.checkbox}>
-            <input type="checkbox" />
-            <span>Out Of Stock (2)</span>
-          </label>
-        </div>
-      </div>
+}
 
-      {/* ===========================
-          Price
-      =========================== */}
 
-      <div className={Styles.section}>
-        <button
-          type="button"
-          className={Styles.header}
-          onClick={() => setPrice(!price)}
-        >
-          <span>PRICE</span>
 
-          {price ? <FiMinus /> : <FiPlus />}
-        </button>
+const handleCategory=(value:string)=>{
 
-        <div
-          className={`${Styles.content} ${
-            price ? Styles.open : ""
-          }`}
-        >
-          <p className={Styles.priceText}>
-            The highest price is Rs.1,850
-          </p>
+setFilters(prev=>({
 
-          <div className={Styles.priceInputs}>
-            <input
-              type="number"
-              placeholder="Rs From"
-            />
+...prev,
 
-            <input
-              type="number"
-              placeholder="Rs To"
-            />
-          </div>
+categories:prev.categories.includes(value)
 
-          <button className={Styles.filterBtn}>
-            APPLY
-          </button>
-        </div>
-      </div>
+?prev.categories.filter(item=>item!==value)
 
-      {/* ===========================
-          Product Type
-      =========================== */}
+:[...prev.categories,value]
 
-      <div className={Styles.section}>
-        <button
-          type="button"
-          className={Styles.header}
-          onClick={() => setProductType(!productType)}
-        >
-          <span>PRODUCT TYPE</span>
+}));
 
-          {productType ? <FiMinus /> : <FiPlus />}
-        </button>
+}
 
-        <div
-          className={`${Styles.content} ${
-            productType ? Styles.open : ""
-          }`}
-        >
-          {[
-            "T-Shirt",
-            "Polo",
-            "Cargo Pants",
-            "Trouser",
-            "Jeans",
-          ].map((item) => (
-            <label
-              key={item}
-              className={Styles.checkbox}
-            >
-              <input type="checkbox" />
 
-              <span>{item}</span>
-            </label>
-          ))}
-        </div>
-      </div>
 
-      {/* ===========================
-          Size
-      =========================== */}
+return (
 
-      <div className={Styles.section}>
-        <button
-          type="button"
-          className={Styles.header}
-          onClick={() => setSize(!size)}
-        >
-          <span>SIZE</span>
+<aside className={Styles.sidebar}>
 
-          {size ? <FiMinus /> : <FiPlus />}
-        </button>
 
-        <div
-          className={`${Styles.content} ${
-            size ? Styles.open : ""
-          }`}
-        >
-          {[
-            "S",
-            "M",
-            "L",
-            "XL",
-            "XXL",
-          ].map((item) => (
-            <label
-              key={item}
-              className={Styles.checkbox}
-            >
-              <input type="checkbox" />
+<div className={Styles.mobileHeader}>
 
-              <span>{item}</span>
-            </label>
-          ))}
-        </div>
-      </div>
-    </aside>
-  );
-};
+<h3>FILTER AND SORT</h3>
+
+<button
+className={Styles.closeBtn}
+onClick={()=>onClose?.()}
+>
+
+<FiX/>
+
+</button>
+
+</div>
+
+
+
+
+
+{/* SORT */}
+
+<div className={Styles.sortSection}>
+
+<label className={Styles.sortLabel}>
+SORT BY
+</label>
+
+
+<div className={Styles.selectWrap}>
+
+<select
+value={sort}
+onChange={(e)=>onSortChange(e.target.value)}
+>
+
+<option>Featured</option>
+<option>Newest</option>
+<option>Price Low → High</option>
+<option>Price High → Low</option>
+
+</select>
+
+
+<FiChevronDown/>
+
+</div>
+
+</div>
+
+
+
+
+
+
+{/* AVAILABILITY */}
+
+<div className={Styles.section}>
+
+
+<button
+className={Styles.header}
+onClick={()=>setAvailability(!availability)}
+>
+
+<span>AVAILABILITY</span>
+
+{
+availability?
+<FiMinus/>:
+<FiPlus/>
+}
+
+</button>
+
+
+
+{
+availability &&
+
+<div className={Styles.content}>
+
+<label className={Styles.checkbox}>
+
+<input type="checkbox"/>
+
+<span>In Stock</span>
+
+</label>
+
+
+<label className={Styles.checkbox}>
+
+<input type="checkbox"/>
+
+<span>Out Of Stock</span>
+
+</label>
+
+
+</div>
+
+}
+
+
+</div>
+
+
+
+
+
+
+
+{/* PRICE */}
+
+<div className={Styles.section}>
+
+
+<button
+className={Styles.header}
+onClick={()=>setPrice(!price)}
+>
+
+
+<span>PRICE</span>
+
+
+{
+price?
+<FiMinus/>:
+<FiPlus/>
+}
+
+
+</button>
+
+
+
+{
+price &&
+
+<div className={Styles.content}>
+
+
+<p>
+Price Range
+</p>
+
+
+<div className={Styles.priceInputs}>
+
+
+<input
+
+type="number"
+
+placeholder="Rs From"
+
+value={filters.minPrice}
+
+onChange={(e)=>
+
+setFilters(prev=>({
+
+...prev,
+
+minPrice:e.target.value
+
+}))
+
+}
+
+/>
+
+
+
+<input
+
+type="number"
+
+placeholder="Rs To"
+
+value={filters.maxPrice}
+
+onChange={(e)=>
+
+setFilters(prev=>({
+
+...prev,
+
+maxPrice:e.target.value
+
+}))
+
+}
+
+/>
+
+
+</div>
+
+
+
+</div>
+
+}
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+{/* PRODUCT TYPE */}
+
+
+<div className={Styles.section}>
+
+
+<button
+
+className={Styles.header}
+
+onClick={()=>setProductType(!productType)}
+
+>
+
+
+<span>
+PRODUCT TYPE
+</span>
+
+
+{
+productType?
+<FiMinus/>:
+<FiPlus/>
+}
+
+
+</button>
+
+
+
+
+{
+
+productType &&
+
+
+<div className={Styles.content}>
+
+
+{
+[
+["T-Shirt","t-shirts"],
+["Polo","polos"],
+["Trouser","trousers"]
+
+].map(([name,value])=>(
+
+
+<label
+key={value}
+className={Styles.checkbox}
+>
+
+
+<input
+
+type="checkbox"
+
+checked={filters.categories.includes(value)}
+
+onChange={()=>handleCategory(value)}
+
+/>
+
+
+<span>{name}</span>
+
+
+</label>
+
+
+))
+
+
+}
+
+
+</div>
+
+
+}
+
+
+</div>
+
+
+
+
+
+
+
+
+
+{/* SIZE */}
+
+
+<div className={Styles.section}>
+
+
+<button
+
+className={Styles.header}
+
+onClick={()=>setSize(!size)}
+
+>
+
+
+<span>
+SIZE
+</span>
+
+
+{
+size?
+<FiMinus/>:
+<FiPlus/>
+}
+
+
+</button>
+
+
+
+
+
+{
+
+size &&
+
+
+<div className={Styles.content}>
+
+
+{
+
+[
+"S",
+"M",
+"L",
+"XL",
+"30",
+"32",
+"34",
+"36"
+
+].map(item=>(
+
+
+<label
+
+key={item}
+
+className={Styles.checkbox}
+
+>
+
+
+<input
+
+type="checkbox"
+
+checked={filters.sizes.includes(item)}
+
+onChange={()=>handleSize(item)}
+
+/>
+
+
+<span>
+{item}
+</span>
+
+
+</label>
+
+
+))
+
+
+}
+
+
+
+</div>
+
+
+}
+
+
+
+</div>
+
+
+
+
+
+</aside>
+
+)
+
+}
+
 
 export default Sidebar;
