@@ -2,6 +2,7 @@ import { products } from "@/data/Product";
 import Image from "next/image";
 import Styles from "./Product.module.css";
 import AddToCartSection from "./ProductClient";
+import Card from "@/components/Card/Card";
 
 interface ProductPageProps {
   params: Promise<{
@@ -21,6 +22,16 @@ export default async function ProductPage({ params }: ProductPageProps) {
       </section>
     );
   }
+
+  // =========================
+  // Recommended Products
+  // =========================
+
+  const recommendedProducts = products
+    .filter(
+      (item) => item.category === product.category && item.id !== product.id,
+    )
+    .slice(0, 4);
 
   return (
     <section className={Styles.product}>
@@ -58,6 +69,22 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <AddToCartSection product={product} />
         </div>
       </div>
+
+      {/* =========================
+Recommended Products
+========================= */}
+
+      {recommendedProducts.length > 0 && (
+        <section className={Styles.recommended}>
+          <h2 className={Styles.class}>You May Also Like</h2>
+
+          <div className={Styles.recommendedGrid}>
+            {recommendedProducts.map((item) => (
+              <Card key={item.id} product={item} />
+            ))}
+          </div>
+        </section>
+      )}
     </section>
   );
 }
