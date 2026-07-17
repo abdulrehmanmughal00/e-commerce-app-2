@@ -2,7 +2,7 @@ import { products } from "@/data/Product";
 import Image from "next/image";
 import Styles from "./Product.module.css";
 import AddToCartSection from "./ProductClient";
-import Card from "@/components/Card/Card";
+import Card from "@/components/card/Card";
 
 interface ProductPageProps {
   params: Promise<{

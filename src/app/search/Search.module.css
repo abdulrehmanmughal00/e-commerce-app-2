@@ -32,7 +32,11 @@
   gap: 30px;
   align-items: start;
 }
-
+.recommended h2 {
+  height: 10vh;
+  align-items: center;
+  display: flex;
+}
 .empty {
   min-height: 350px;
   display: flex;
