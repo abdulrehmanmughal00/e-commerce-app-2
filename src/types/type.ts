@@ -13,6 +13,7 @@ export interface Product {
   newPrice: number;
   discount: string;
   sizes: string[];
+  collection: string;
   category: string;
   inStock: boolean;
 }

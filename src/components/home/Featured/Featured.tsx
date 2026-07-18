@@ -2,42 +2,25 @@ import Image from "next/image";
 import Link from "next/link";
 import Styles from "./Featured.module.css";
 
-const categories = [
-  {
-    id: 1,
-    title: "POLOS",
-    image: "/polo.jpg",
-    href: "/",
-  },
-  {
-    id: 2,
-    title: "T-SHIRTS",
-    image: "/tshirt.jpg",
-    href: "/",
-  },
-  {
-    id: 3,
-    title: "DROP SHOULDERS",
-    image: "/drop-shoulder.jpg",
-    href: "/",
-  },
-  {
-    id: 4,
-    title: "TROUSERS",
-    image: "/trouser.jpg",
-    href: "/",
-  },
-];
+import { products } from "@/data/Product";
 
 const Featured = () => {
+  const polosProducts = products
+    .filter((product) => product.category === "polos")
+    .slice(0, 4);
+
   return (
     <section className={Styles.featured}>
       <div className={Styles.container}>
         <h2 className={Styles.heading}>FEATURED CATEGORIES</h2>
 
         <div className={Styles.grid}>
-          {categories.map((item) => (
-            <Link key={item.id} href={item.href} className={Styles.card}>
+          {polosProducts.map((item) => (
+            <Link
+              key={item.id}
+              href={`/product/${item.id}`}
+              className={Styles.card}
+            >
               <div className={Styles.imageWrapper}>
                 <Image
                   src={item.image}

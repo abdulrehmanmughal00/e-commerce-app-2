@@ -213,7 +213,7 @@ const Sidebar = ({
 
         {size && (
           <div className={Styles.content}>
-            {["S", "M", "L", "XL", "30", "32", "34", "36"].map((item) => (
+            {["S", "M", "L", "XL"].map((item) => (
               <label key={item} className={Styles.checkbox}>
                 <input
                   type="checkbox"
