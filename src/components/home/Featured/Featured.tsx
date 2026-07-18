@@ -5,17 +5,15 @@ import Styles from "./Featured.module.css";
 import { products } from "@/data/Product";
 
 const Featured = () => {
-  const polosProducts = products
-    .filter((product) => product.category === "polos")
-    .slice(0, 4);
+  const featuredProducts = products.slice(0, 4);
 
   return (
     <section className={Styles.featured}>
       <div className={Styles.container}>
-        <h2 className={Styles.heading}>FEATURED CATEGORIES</h2>
+        <h2 className={Styles.heading}>FEATURED PRODUCTS</h2>
 
         <div className={Styles.grid}>
-          {polosProducts.map((item) => (
+          {featuredProducts.map((item) => (
             <Link
               key={item.id}
               href={`/product/${item.id}`}
