@@ -8,8 +8,7 @@ const Home = () => {
   return (
     <div className={Styles.container}>
       <section className={Styles.hero}>
-        {/* Desktop Banner */}
-        <Link href="/new-arrivals">
+        <Link href="/new-arrivals" className={Styles.bannerLink}>
           <Image
             src="/image1.png"
             alt="Desktop Banner"
@@ -17,17 +16,15 @@ const Home = () => {
             priority
             className={`${Styles.banner} ${Styles.desktopBanner}`}
           />
+
+          <Image
+            src="/image2.png"
+            alt="Mobile Banner"
+            fill
+            priority
+            className={`${Styles.banner} ${Styles.mobileBanner}`}
+          />
         </Link>
-
-        {/* Mobile Banner */}
-
-        <Image
-          src="/image2.png"
-          alt="Mobile Banner"
-          fill
-          priority
-          className={`${Styles.banner} ${Styles.mobileBanner}`}
-        />
       </section>
       <Featured />
       <NewArrivals />

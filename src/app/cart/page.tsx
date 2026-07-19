@@ -6,6 +6,7 @@ import { toast } from "sonner";
 
 import { useCartContext } from "@/context/CartContext";
 import Styles from "./Cart.module.css";
+import Link from "next/link";
 
 const CartPage = () => {
   const {
@@ -107,17 +108,21 @@ const CartPage = () => {
               className={Styles.cartItem}
               key={`${item.id}-${item.selectedSize}`}
             >
-              <div className={Styles.imageBox}>
+              <Link href={`/product/${item.id}`} className={Styles.imageBox}>
                 <Image
                   src={item.image}
                   alt={item.title}
                   width={150}
                   height={150}
                 />
-              </div>
-
+              </Link>
               <div className={Styles.details}>
-                <h3>{item.title}</h3>
+                <Link
+                  href={`/product/${item.id}`}
+                  className={Styles.productLink}
+                >
+                  <h3>{item.title}</h3>
+                </Link>
 
                 <p>Size: {item.selectedSize}</p>
 

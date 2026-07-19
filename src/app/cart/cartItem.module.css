@@ -4,67 +4,143 @@
   padding: 20px;
   border: 1px solid #e5e5e5;
   border-radius: 12px;
-  background: white;
+  background: #fff;
+  align-items: flex-start;
 }
 
+.image {
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+}
 
-.image img {
+.productImage {
+  width: 120px;
+  height: 120px;
   object-fit: cover;
   border-radius: 10px;
 }
 
-
 .details {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-
 .details h3 {
+  margin: 0;
   font-size: 18px;
   font-weight: 600;
+  color: #111;
 }
-
 
 .details p {
   margin: 0;
+  font-size: 15px;
   color: #555;
 }
-
-
 
 .actions {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 14px;
   margin-top: 10px;
 }
 
-
 .actions button {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border: 1px solid #ddd;
-  background: white;
+  background: #fff;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 20px;
+  transition: 0.3s;
 }
 
+.actions button:hover {
+  background: #111;
+  color: #fff;
+}
 
 .actions span {
+  min-width: 20px;
+  text-align: center;
   font-size: 16px;
   font-weight: 600;
 }
 
-
-
 .remove {
   width: fit-content;
-  margin-top: 10px;
+  margin-top: 12px;
   border: none;
   background: transparent;
-  color: red;
+  color: #e63946;
+  font-size: 15px;
   cursor: pointer;
   padding: 0;
+  transition: 0.3s;
+}
+
+.remove:hover {
+  color: #b00020;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .item {
+    gap: 15px;
+    padding: 16px;
+  }
+
+  .image,
+  .productImage {
+    width: 100px;
+    height: 100px;
+  }
+
+  .details h3 {
+    font-size: 17px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .item {
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .image,
+  .productImage {
+    width: 90px;
+    height: 90px;
+  }
+
+  .details h3 {
+    font-size: 16px;
+  }
+
+  .details p {
+    font-size: 14px;
+  }
+
+  .actions {
+    gap: 10px;
+  }
+
+  .actions button {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+  }
+
+  .actions span {
+    font-size: 15px;
+  }
+
+  .remove {
+    font-size: 14px;
+  }
 }

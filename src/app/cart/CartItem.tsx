@@ -15,24 +15,44 @@ const CartItem = ({ item }: Props) => {
   return (
     <div className={Styles.item}>
       <div className={Styles.image}>
-        <Image src={item.image} alt={item.title} width={120} height={120} />
+        <Image
+          src={item.image}
+          alt={item.title}
+          width={120}
+          height={120}
+          className={Styles.productImage}
+        />
       </div>
 
       <div className={Styles.details}>
         <h3>{item.title}</h3>
 
-        <p>Size: {item.selectedSize}</p>
+        <p>
+          <strong>Size:</strong> {item.selectedSize}
+        </p>
 
-        <p>Price: Rs. {item.newPrice}</p>
+        <p>
+          <strong>Price:</strong> Rs. {item.newPrice}
+        </p>
+
+        <p>
+          <strong>Total:</strong> Rs. {item.newPrice * item.quantity}
+        </p>
 
         <div className={Styles.actions}>
-          <button onClick={() => decreaseQuantity(item.id, item.selectedSize)}>
-            -
+          <button
+            onClick={() => decreaseQuantity(item.id, item.selectedSize)}
+            aria-label="Decrease Quantity"
+          >
+            −
           </button>
 
           <span>{item.quantity}</span>
 
-          <button onClick={() => increaseQuantity(item.id, item.selectedSize)}>
+          <button
+            onClick={() => increaseQuantity(item.id, item.selectedSize)}
+            aria-label="Increase Quantity"
+          >
             +
           </button>
         </div>

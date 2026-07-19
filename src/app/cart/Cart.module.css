@@ -222,3 +222,19 @@
 .summary button:hover {
   background: #16a855;
 }
+.productLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.productLink h3 {
+  transition: color 0.3s;
+}
+
+.productLink:hover h3 {
+  color: #000;
+}
+
+.imageBox {
+  display: block;
+}
