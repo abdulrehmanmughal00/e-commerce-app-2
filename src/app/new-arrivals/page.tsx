@@ -13,6 +13,7 @@ const NewArrivals = () => {
 
   const [mobileFilter, setMobileFilter] = useState(false);
 
+
   const [filters, setFilters] = useState({
     sizes: [] as string[],
 

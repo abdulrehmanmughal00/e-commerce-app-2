@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Styles from "./T-shirt.module.css";
-import Sidebar from "@/components/sidebar/Sidebar";
+import Sidebar from "@/components/sideBar/Sidebar";
 import Card from "@/components/card/Card";
 
 import { products } from "@/data/Product";
@@ -12,10 +12,14 @@ const Tshirts = () => {
   const [sort, setSort] = useState("Featured");
   const [mobileFilter, setMobileFilter] = useState(false);
 
-  const tshirts = products.filter(
-    (item) => item.category === "t-shirts"
-  );
-
+  const tshirts = products.filter((item) => item.category === "t-shirts");
+  const [filters, setFilters] = useState({
+    sizes: [] as string[],
+    categories: [] as string[],
+    availability: [] as string[],
+    minPrice: "",
+    maxPrice: "",
+  });
   return (
     <section className={Styles.tshirts}>
       <div className={Styles.container}>
@@ -37,6 +41,8 @@ const Tshirts = () => {
           <Sidebar
             sort={sort}
             onSortChange={setSort}
+            filters={filters}
+            setFilters={setFilters}
             onClose={() => setMobileFilter(false)}
           />
 
@@ -50,7 +56,12 @@ const Tshirts = () => {
 
         <div className={Styles.wrapper}>
           <div className={Styles.desktopSidebar}>
-            <Sidebar sort={sort} onSortChange={setSort} />
+            <Sidebar
+              sort={sort}
+              onSortChange={setSort}
+              filters={filters}
+              setFilters={setFilters}
+            />
           </div>
 
           <div className={Styles.products}>

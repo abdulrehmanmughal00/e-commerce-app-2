@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Styles from "./Polos.module.css";
-import Sidebar from "@/components/sidebar/Sidebar";
+import Sidebar from "@/components/sideBar/Sidebar";
 import Card from "@/components/card/Card";
 
 import { products } from "@/data/Product";
@@ -13,7 +13,13 @@ const Polos = () => {
   const [mobileFilter, setMobileFilter] = useState(false);
 
   const polos = products.filter((item) => item.category === "polos");
-
+  const [filters, setFilters] = useState({
+    sizes: [] as string[],
+    categories: [] as string[],
+    availability: [] as string[],
+    minPrice: "",
+    maxPrice: "",
+  });
   return (
     <section className={Styles.polos}>
       <div className={Styles.container}>
@@ -37,6 +43,8 @@ const Polos = () => {
           <Sidebar
             sort={sort}
             onSortChange={setSort}
+            filters={filters}
+            setFilters={setFilters}
             onClose={() => setMobileFilter(false)}
           />
 
@@ -51,7 +59,13 @@ const Polos = () => {
         {/* Desktop */}
         <div className={Styles.wrapper}>
           <div className={Styles.desktopSidebar}>
-            <Sidebar sort={sort} onSortChange={setSort} />
+            <Sidebar
+              sort={sort}
+              onSortChange={setSort}
+              filters={filters}
+              setFilters={setFilters}
+              onClose={() => setMobileFilter(false)}
+            />
           </div>
 
           <div className={Styles.products}>

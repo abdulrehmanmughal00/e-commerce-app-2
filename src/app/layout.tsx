@@ -20,8 +20,92 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Your Store Name",
-  description: "Your store description",
+  metadataBase: new URL("https://mapparel.com"),
+
+  title: {
+    default: "M APPAREL | Premium Men's Fashion",
+    template: "%s | M APPAREL",
+  },
+
+  description:
+    "Discover premium men's fashion at M APPAREL. Shop stylish polos, t-shirts, trousers, and everyday essentials with modern designs, premium quality, and affordable prices.",
+
+  keywords: [
+    "M APPAREL",
+    "Men's Clothing",
+    "Men's Fashion",
+    "Fashion Store",
+    "Polos",
+    "Polo Shirts",
+    "T-Shirts",
+    "Men's T-Shirts",
+    "Trousers",
+    "Casual Wear",
+    "Premium Clothing",
+    "Streetwear",
+    "Online Shopping",
+    "Pakistan Fashion",
+    "Men's Apparel",
+    "Affordable Fashion",
+    "Trending Fashion",
+    "Cotton T-Shirts",
+    "Slim Fit",
+    "Modern Clothing",
+  ],
+
+  authors: [
+    {
+      name: "M APPAREL",
+    },
+  ],
+
+  creator: "M APPAREL",
+
+  publisher: "M APPAREL",
+
+  alternates: {
+    canonical: "/",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+
+  openGraph: {
+    type: "website",
+    locale: "en_PK",
+    url: "https://mapparel.com",
+    siteName: "M APPAREL",
+    title: "M APPAREL | Premium Men's Fashion",
+    description:
+      "Explore premium men's clothing including polos, t-shirts, trousers and more. Quality fashion designed for everyday style.",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "M APPAREL | Premium Men's Fashion",
+    description:
+      "Shop premium men's fashion with stylish polos, t-shirts, trousers and more.",
+  },
+
+  category: "Fashion",
+
+  applicationName: "M APPAREL",
+
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
 };
 
 export default function RootLayout({
@@ -30,7 +114,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable}`}
+      suppressHydrationWarning
+    >
       <body>
         <CartProvider>
           <TopBar />

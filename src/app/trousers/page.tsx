@@ -13,7 +13,13 @@ const Trousers = () => {
   const [mobileFilter, setMobileFilter] = useState(false);
 
   const trousers = products.filter((item) => item.category === "trousers");
-
+  const [filters, setFilters] = useState({
+    sizes: [] as string[],
+    categories: [] as string[],
+    availability: [] as string[],
+    minPrice: "",
+    maxPrice: "",
+  });
   return (
     <section className={Styles.trousers}>
       <div className={Styles.container}>
@@ -37,6 +43,8 @@ const Trousers = () => {
           <Sidebar
             sort={sort}
             onSortChange={setSort}
+            filters={filters}
+            setFilters={setFilters}
             onClose={() => setMobileFilter(false)}
           />
 
@@ -51,7 +59,12 @@ const Trousers = () => {
         {/* Desktop */}
         <div className={Styles.wrapper}>
           <div className={Styles.desktopSidebar}>
-            <Sidebar sort={sort} onSortChange={setSort} />
+            <Sidebar
+              sort={sort}
+              onSortChange={setSort}
+              filters={filters}
+              setFilters={setFilters}
+            />
           </div>
 
           <div className={Styles.products}>
