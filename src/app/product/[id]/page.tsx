@@ -48,6 +48,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             height={900}
             className={Styles.image}
             priority
+            unoptimized
           />
         </div>
 
