@@ -10,7 +10,7 @@ const Home = () => {
       <section className={Styles.hero}>
         <Link href="/new-arrivals" className={Styles.bannerLink}>
           <Image
-            src="/image1.png"
+            src="/image3.png"
             alt="Desktop Banner"
             fill
             priority
