@@ -37,6 +37,7 @@ const Card = ({ product }: CardProps) => {
             width={300}
             height={300}
             className={Styles.image}
+            unoptimized
           />
         </div>
       </Link>

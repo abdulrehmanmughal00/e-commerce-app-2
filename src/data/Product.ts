@@ -5,7 +5,7 @@ export const products: Product[] = [
   {
     id: 1,
     title: "Classic Pique Polo",
-    image: "/productImage/polo/polo1.jfif",
+    image: "/productImage/polo/polo1.jpg",
     oldPrice: 2200,
     newPrice: 1499,
     discount: "32% Off",
@@ -17,7 +17,7 @@ export const products: Product[] = [
   {
     id: 2,
     title: "Navy Stripe Polo",
-    image: "/productImage/polo/polo2.jfif",
+    image: "/productImage/polo/polo2.png",
     oldPrice: 2500,
     newPrice: 1799,
     discount: "28% Off",
