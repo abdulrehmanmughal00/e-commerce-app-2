@@ -25,6 +25,8 @@ const Featured = () => {
                   alt={item.title}
                   fill
                   className={Styles.image}
+                  priority
+                  unoptimized
                   sizes="(max-width:768px) 100vw,
                          (max-width:992px) 50vw,
                          25vw"
